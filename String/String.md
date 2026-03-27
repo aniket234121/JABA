@@ -263,3 +263,139 @@ Slower than StringBuilder
 
 Use Case:
 Joining multiple strings with delimiter
+
+# Inbuilt methods in String class
+
+| Category | Method | Return Type | Modifies Original? | Time Complexity* | Key Notes (What Developers Must Know) |
+|----------|--------|------------|--------------------|------------------|--------------------------------------|
+| Basic | `length()` | `int` | ❌ No | O(1) | Returns character count (not bytes) |
+| Basic | `isEmpty()` | `boolean` | ❌ No | O(1) | Checks length == 0 |
+| Basic | `isBlank()` (Java 11+) | `boolean` | ❌ No | O(n) | Checks only whitespace (trim-like behavior) |
+| Access | `charAt(int)` | `char` | ❌ No | O(1) | No bounds check → can throw `IndexOutOfBoundsException` |
+| Access | `toCharArray()` | `char[]` | ❌ No | O(n) | Creates new array copy |
+| Comparison | `equals(Object)` | `boolean` | ❌ No | O(n) | Content comparison (case-sensitive) |
+| Comparison | `equalsIgnoreCase()` | `boolean` | ❌ No | O(n) | Case-insensitive comparison |
+| Comparison | `compareTo(String)` | `int` | ❌ No | O(n) | Lexicographical comparison (Unicode-based) |
+| Comparison | `compareToIgnoreCase()` | `int` | ❌ No | O(n) | Case-insensitive ordering |
+| Search | `contains(CharSequence)` | `boolean` | ❌ No | O(n) | Internally uses `indexOf()` |
+| Search | `indexOf(String)` | `int` | ❌ No | O(n) | Returns first match index or -1 |
+| Search | `lastIndexOf(String)` | `int` | ❌ No | O(n) | Searches from end |
+| Search | `startsWith(String)` | `boolean` | ❌ No | O(n) | Prefix check |
+| Search | `endsWith(String)` | `boolean` | ❌ No | O(n) | Suffix check |
+| Substring | `substring(int)` | `String` | ❌ No | O(n) | Creates new String (post Java 7) |
+| Substring | `substring(int, int)` | `String` | ❌ No | O(n) | End index exclusive |
+| Modify | `toUpperCase()` | `String` | ❌ No | O(n) | Locale-sensitive |
+| Modify | `toLowerCase()` | `String` | ❌ No | O(n) | Locale-sensitive |
+| Modify | `trim()` | `String` | ❌ No | O(n) | Removes leading/trailing spaces only |
+| Modify | `strip()` (Java 11+) | `String` | ❌ No | O(n) | Unicode-aware trimming |
+| Modify | `replace(char, char)` | `String` | ❌ No | O(n) | No regex used |
+| Modify | `replaceAll(String, String)` | `String` | ❌ No | O(n) | Uses regex → slower |
+| Modify | `replaceFirst(String, String)` | `String` | ❌ No | O(n) | Replaces first match (regex) |
+| Split/Join | `split(String)` | `String[]` | ❌ No | O(n) | Regex-based split (costly) |
+| Split/Join | `join(CharSequence, ...)` | `String` | ❌ No | O(n) | Best for joining multiple values |
+| Concat | `concat(String)` | `String` | ❌ No | O(n) | Throws NPE if argument is null |
+| Conversion | `valueOf(any)` | `String` | ❌ No | O(n) | Converts primitives/objects safely |
+| Formatting | `format(String, ...)` | `String` | ❌ No | O(n) | Similar to printf (slower but readable) |
+| Regex | `matches(String)` | `boolean` | ❌ No | O(n) | Full-string regex match |
+| Advanced | `intern()` | `String` | ❌ No | O(n) | Moves/returns string from SCP |
+| Utility | `repeat(int)` (Java 11+) | `String` | ❌ No | O(n*k) | Repeats string k times |
+
+---
+
+## ⚠️ Important Rules for Developers
+
+- **Strings are immutable** → every method creates a new object
+- Always **store the result**:
+
+# Mutable String
+A mutable string allows in-place modification of its character sequence without creating a new object.
+
+In Java, mutability is provided by:
+
+#### 1 StringBuilder
+
+#### 2 StringBuffer
+
+### Why Mutable Strings Exist
+
+String is immutable → inefficient for repeated updates:
+
+    String s = "";
+    for (int i = 0; i < 1000; i++) {
+        s += i; // creates many temporary objects
+    }
+
+👉 Leads to:
+
+Excessive heap allocations
+
+GC pressure
+
+Poor performance
+
+Solution: use a mutable buffer.
+
+same methods
+
+| Method | Return Type | Mutates Object? | Complexity | Key Notes |
+|--------|-------------|------------------|------------|-----------|
+| append(x) | StringBuilder / StringBuffer | ✅ Yes | Amortized O(1) | Central method; overloads for primitives/objects |
+| insert(int, x) | same | ✅ Yes | O(n) | Shifts tail to make space |
+| delete(int, int) | same | ✅ Yes | O(n) | Removes range |
+| replace(int, int, String) | same | ✅ Yes | O(n) | Range replace |
+| reverse() | same | ✅ Yes | O(n) | In-place reversal |
+| setCharAt(int, char) | void | ✅ Yes | O(1) | Direct mutation |
+| charAt(int) | char | ❌ No | O(1) | Read access |
+| length() | int | ❌ No | O(1) | Used characters |
+| capacity() | int | ❌ No | O(1) | Allocated buffer |
+| ensureCapacity(int) | void | ✅ (may grow) | O(n) when grow | Avoid repeated reallocations |
+| toString() | String | ❌ (creates new) | O(n) | Produces immutable `String` |
+
+## What is Capacity?
+
+Capacity = total allocated size of the internal buffer
+
+Length (count) = number of characters currently stored
+
+    StringBuilder sb = new StringBuilder("Hello");
+    length() → 5
+    capacity() → 21
+
+capacity = initial_length + 16
+
+So:
+
+"Hello" → length = 5  
+capacity = 5 + 16 = 21
+
+## Final vs Immutability (Deep, Precise Distinction)
+
+🔹 Primitive
+
+    final int x = 10;
+    x = 20; // ❌ compile-time error
+
+👉 Value itself cannot change
+
+🔹 Reference Type
+
+    final StringBuilder sb = new StringBuilder("Hello");
+    sb.append(" World");   // ✅ allowed
+    sb = new StringBuilder(); // ❌ not allowed
+
+👉 Key Insight:
+
+Reference is fixed
+
+Object can still change
+
+### Immutability — What It Really Means
+
+An object is immutable if its internal state cannot change after creation.
+
+🔍 Example (String)
+
+    String s = "Hello";
+    s.concat(" World");
+
+👉 New object created → original unchanged
