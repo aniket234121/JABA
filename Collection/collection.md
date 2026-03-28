@@ -28,6 +28,7 @@ Iterable Interface is the topmost interface in java.
         }`
         
 2. using iterator.
+```java
 
         `Iterator<Integer> iter;
         iter = stack.iterator();
@@ -37,6 +38,9 @@ Iterable Interface is the topmost interface in java.
             int nextElement = iter.next();
             System.out.print(nextElement + " ");
         }`
+```
+
+
    **if We are using iterating collection with help of advanced for loop for iteration and iterator we will get **Concurrent Modification Exception** if we modify the list.**
    * Iterator interface present inside java.util package.
    * Iterator() is method present inside Iterator interface.
@@ -98,4 +102,99 @@ iterator interface
 * list iterator is not exhaustive in nature.
 * at start cursor is before the first element.
 * can use `collectionName.listIterator(index)` to start iteration from particular index.
+
+| Method Signature            | Return Type | Description                                                                 |
+|---------------------------|-------------|-----------------------------------------------------------------------------|
+| hasNext()                 | boolean     | Returns true if there are more elements when traversing forward            |
+| next()                    | E           | Returns the next element in the list                                       |
+| hasPrevious()             | boolean     | Returns true if there are elements when traversing backward                |
+| previous()                | E           | Returns the previous element in the list                                   |
+| nextIndex()               | int         | Returns the index of the element that would be returned by next()          |
+| previousIndex()           | int         | Returns the index of the element that would be returned by previous()      |
+| remove()                  | void        | Removes the last element returned by next() or previous()                  |
+| set(E e)                  | void        | Replaces the last element returned with the specified element              |
+| add(E e)                  | void        | Inserts the specified element into the list at the current position        |
+
+```java
+List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C"));
+
+        ListIterator<String> it = list.listIterator();
+
+        // Forward traversal
+        while (it.hasNext()) {
+            String val = it.next();
+            if (val.equals("B")) {
+                it.set("B*");   // modify current element
+                it.add("X");    // insert after B*
+            }
+        }
+
+        System.out.println("After forward pass: " + list);
+
+        // Backward traversal
+        while (it.hasPrevious()) {
+            String val = it.previous();
+            if (val.equals("A")) {
+                it.remove(); // remove element safely
+            }
+        }
+
+```
+
+## Important ( handle Concurrent Modification Exception )
+In most standard collection frameworks, iterators fall into two broad categories:
+
+### Fail-Fast Iterators
+
+Detect concurrent structural modification.
+
+A structural modification is any operation that changes:
+
+Size of the collection
+
+Internal structure affecting iteration order
+
+Examples:
+
+    add(), remove(), clear() → ✔ structural
+    set(index, value) in lists → ✖ not structural
+
+Immediately throw exceptions (e.g., ConcurrentModificationException in Java).
+
+Example collections:
+ArrayList
+HashMap
+
+
+Fail-Fast (contrast)
+
+#### Internal Fields:
+
+modCount → maintained by the collection
+
+expectedModCount → captured by iterator at creation
+
+Iterator checks:
+```java
+    if (expectedModCount != modCount)
+      throw ConcurrentModificationException
+```
+```java
+Iterator<Integer> it = list.iterator();
+while (it.hasNext()) {
+    Integer val = it.next();
+    if (val == 2) {
+        it.remove(); // safe
+    }
+}
+```
+
+### Typical Fail-Fast Collections in Java
+* ArrayList
+
+* LinkedList
+
+* HashMap
+
+* HashSet
 
