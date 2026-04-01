@@ -42,6 +42,17 @@ Iterable Interface is the topmost interface in java.
 
 
    **if We are using iterating collection with help of advanced for loop for iteration and iterator we will get **Concurrent Modification Exception** if we modify the list.**
+   
+   means When you iterate a collection (like ArrayList) using:
+
+    enhanced for loop (for-each) OR
+    an Iterator
+
+    and you modify the collection structure (add/remove elements),
+
+    👉 Java may throw a
+    ConcurrentModificationException
+
    * Iterator interface present inside java.util package.
    * Iterator() is method present inside Iterator interface.
    * Inside ArrayList class iterator method is overridden which returns the object of iterator type
