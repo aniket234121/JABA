@@ -14,8 +14,12 @@
     * [Stack](./Collection/List/Stack/Stack.md)
     * [CopyOnWriteArrayList](./Collection/List/CopyOnWriteArrayList/CopyOnWriteArraylist.md)
 
-1.[ Map](./Map/Map.md)
+4.[ Map](./Map/Map.md)
 * [ Hash Map](./Map/HashMap/HashMap.md)
 * [ Linked HashMap](./Map/LInkedHashMap/LinkedHashMap.md)
 * [ Identity HashMap](./Map/IdentityHashMap/IdentityHashMap.md)
 * [ WeakHashMap](./Map/WeakHashMap/WeakHashMap.md)
+* [ ImmutableMap](./Map/ImmutableMap/ImmutableMap.md)
+* [ ConcurrentHashmap](./Map/ConcurrentHashMap/ConcurrentHashMap.md)
+* [ EnumMap](./Map/EnumMap/EnumMap.md)
+* [ HashTable](./Map/HashTable/HashTable.md)
