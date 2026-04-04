@@ -10,6 +10,11 @@ LinkedHashSet is a class in the Java Collections Framework that:
 * Hash table (for fast operations)
 * Linked list (for order preservation)
 
+**LinkedHashSet uses a LinkedHashMap internally**
+
+    It does not store values separately
+    Instead, it stores elements as keys in a map
+
 **Constructors**
 
     LinkedHashSet()
