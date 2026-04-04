@@ -28,6 +28,27 @@ Structure:
     * Linked List
     * Balanced Tree (Red-Black Tree) when threshold exceeded
 
+### How Locking Works
+####  Case 1: Empty Bucket (No Locking)
+    if (table[i] == null)
+        CAS → insert node
+
+👉 Uses lock-free CAS
+
+👉 No blocking → very fast
+
+#### Case 2: Non-Empty Bucket (Locking Required)
+
+When collision occurs:
+
+    synchronized (firstNodeInBucket) {
+        // modify linked list or tree
+    }
+
+👉 Lock is applied only on that bucket
+
+👉 Other threads can work on other buckets concurrently
+
 ```java
 import java.util.concurrent.ConcurrentHashMap;
 

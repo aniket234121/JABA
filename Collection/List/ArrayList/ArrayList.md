@@ -62,3 +62,4 @@ public class RemoveComparison {
     }
 }
 ```
+This explicitly passes an Integer object, which matches the remove(Object o) method. It searches the list for the value 3 and removes its first occurrence.

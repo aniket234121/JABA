@@ -30,4 +30,5 @@
 * [ ImmutableMap](./Map/ImmutableMap/ImmutableMap.md)
 * [ ConcurrentHashmap](./Map/ConcurrentHashMap/ConcurrentHashMap.md)
 * [ EnumMap](./Map/EnumMap/EnumMap.md)
+* [ TreeMap](./Map/TreeMap/TreeMap.md)
 * [ HashTable](./Map/HashTable/HashTable.md)

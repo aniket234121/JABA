@@ -9,6 +9,11 @@ If you don’t specify capacityIncrement:
 
 * Capacity doubles automatically
 
+### Internal Working
+same as arraylist backed by array of Object[]
+
+when array is full create new array with capacity and copy previous element then add new one.
+
 ### constructors
 
 | Constructor                                          | Description                                                                               |

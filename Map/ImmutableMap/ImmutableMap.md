@@ -19,7 +19,7 @@ An Immutable Map is a map whose contents cannot be modified after creation.
 ## Ways to Create Immutable Maps in Java
 
 ### Using Map.of() (Java 9+)
-
+can only create 10 entries max
 ```java
 import java.util.Map;
 

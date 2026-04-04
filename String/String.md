@@ -1,3 +1,16 @@
+# 📘 Java String — Index
+
+- **Introduction** | **Internal (Pre-9, 9+)** | **Types (Literal, Heap, Interned)** | **Immutability** | **Memory (SCP vs Heap)**  
+
+- **Comparison:** `==` | `.equals()` | `.equalsIgnoreCase()` | `.compareTo()` | `.compareToIgnoreCase()` | `Objects.equals()`  
+
+- **Concatenation:** `+` | `concat()` | `StringBuilder` | `StringBuffer` | `String.join()`  
+
+- **Methods:** Basic | Access | Comparison | Search | Substring | Modify | Split/Join | Conversion | Regex | Utility  
+
+- **Others:** Rules | Mutable (Builder, Buffer) | Methods | Capacity vs Length | final vs Immutability  
+
+
 # String
 A String in Java is an object that represents a sequence of characters, implemented using the **java.lang.String** class.
 

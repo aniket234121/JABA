@@ -46,7 +46,7 @@ If collision → add to linked list
 
 If list becomes large → convert to tree
 
-🔍 get(K key)
+### 🔍 get(K key)
 
 ### **Compute hash**
 Find bucket

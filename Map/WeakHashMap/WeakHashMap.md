@@ -71,3 +71,36 @@ public class SoftExample {
 GC collects object ONLY when memory is insufficient
 Otherwise, object remains
 
+## Example
+```java
+import java.util.*;
+
+public class WeakHashMapExample {
+    public static void main(String[] args) throws InterruptedException {
+
+        WeakHashMap<String, String> map = new WeakHashMap<>();
+
+        String key1 = new String("key1");
+        String key2 = new String("key2");
+
+        map.put(key1, "value1");
+        map.put(key2, "value2");
+
+        System.out.println("Before GC: " + map);
+
+        // Remove strong reference to key1
+        key1 = null;
+
+        // Suggest garbage collection
+        System.gc();
+        Thread.sleep(1000);
+
+        System.out.println("After GC: " + map);
+    }
+}
+```
+### Output:
+```java
+Before GC: {key1=value1, key2=value2}
+After GC: {key2=value2}
+```
