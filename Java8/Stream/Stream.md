@@ -15,8 +15,7 @@ Use of Stream in Java.
 * Not Modify the original list.
 
 
-* **Each intermediate operation is lazily executed and returns a stream as a result, hence, various intermediate
-  operations can be pipelined. Terminal operations mark the end of the stream and return the result.**
+* **Intermediate operations are lazy - they are not executed until a terminal operation is invoked. They return a new stream, allowing multiple operations to be chained (pipelined). A terminal operation triggers the execution of the stream pipeline and produces a result or side effect.**
 
 ### Different Operations On Streams
 
