@@ -41,3 +41,9 @@
 * [ EnumMap](./Map/EnumMap/EnumMap.md)
 * [ TreeMap](./Map/TreeMap/TreeMap.md)
 * [ HashTable](./Map/HashTable/HashTable.md)
+
+
+5.[ Java 8](Java8/java8.md)
+* [Stream](Java8/Stream/Stream.md) 
+    * [StreamExamples](Java8/Stream/StreamScenarioExamples.md)
+    * [Collectors](Java8/Stream/Collectors.md)
