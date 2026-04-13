@@ -47,3 +47,6 @@
 * [Stream](Java8/Stream/Stream.md) 
     * [StreamExamples](Java8/Stream/StreamScenarioExamples.md)
     * [Collectors](Java8/Stream/Collectors.md)
+* [Functional Interface](Java8/FunctionalInterface/FunctionalInterface.md) 
+* [Lambda Expressions](Java8/LambdaExpressions/LambdaExpressions.md) 
+* [Method Referrence](Java8/MethodReferrence/MethodReferrence.md) 
